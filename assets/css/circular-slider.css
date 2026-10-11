@@ -1,0 +1,31 @@
+.circular-slider-wrapper{
+    position:relative;width:100%;height:var(--ckcs-height-desktop,100vh);min-height:420px;overflow:hidden;
+    display:flex;align-items:center;justify-content:center;padding-top:var(--ckcs-pad-top,0);padding-bottom:var(--ckcs-pad-bottom,0);
+    box-sizing:border-box;isolation:isolate;background:#111827;
+}
+.circular-slider-wrapper,.circular-slider-wrapper *{box-sizing:border-box;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+.slider-background{position:absolute;inset:-4%;z-index:0;overflow:hidden;background-size:cover;background-position:center;background-repeat:no-repeat;opacity:var(--ckcs-bg-opacity,.82);filter:blur(var(--ckcs-bg-blur,16px));transform:scale(var(--ckcs-bg-scale,1.08));}
+.slider-background::after{content:"";position:absolute;inset:0;background:rgba(15,23,42,.05);pointer-events:none}
+.slider-background .bg-layer{position:absolute;inset:0;background-size:cover;background-position:center;background-repeat:no-repeat;opacity:0;transition:opacity var(--ckcs-transition,900ms) ease;will-change:opacity}
+.slider-background .bg-layer.active{opacity:1}
+.circular-slider-stage{position:relative;width:var(--ckcs-circle-desktop,500px);height:var(--ckcs-circle-desktop,500px);z-index:10;flex:0 0 auto}
+.circular-slider-circle{position:absolute;inset:0;border-radius:50%;overflow:hidden;z-index:10;background:#111;border:var(--ckcs-circle-border-width,2px) solid color-mix(in srgb,var(--ckcs-circle-border-color,#fff) calc(var(--ckcs-circle-border-opacity,.35)*100%),transparent);box-shadow:0 24px 80px rgba(15,23,42,.16)}
+@supports not (color:color-mix(in srgb,#fff 50%,transparent)){.circular-slider-circle{border-color:var(--ckcs-circle-border-color,#fff)}}
+.circular-slider-slides,.circular-slide{position:absolute;inset:0;width:100%;height:100%}
+.circular-slide{opacity:0;pointer-events:none;transition:opacity var(--ckcs-transition,900ms) ease;overflow:hidden;border-radius:inherit}
+.circular-slide.active{opacity:1;pointer-events:auto;z-index:2}
+.circular-slide img{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;margin:0!important;border:0!important;border-radius:0!important;display:block!important;object-position:var(--ckcs-image-x,50%) var(--ckcs-image-y,50%);transform:scale(var(--ckcs-image-scale,1));transform-origin:var(--ckcs-image-x,50%) var(--ckcs-image-y,50%);transition:transform .5s ease;}
+.circular-slider-texts{position:absolute;inset:0;left:50%;top:50%;width:100%;height:100%;transform:translate(-50%,-50%);pointer-events:none;z-index:20}
+.texts-rotating-container{position:absolute;width:100%;height:100%;left:50%;top:50%;transform:translate(-50%,-50%) rotate(0deg);transition:transform var(--ckcs-transition,900ms) cubic-bezier(.25,.1,.25,1);will-change:transform}
+.circular-text-word{display:none}
+.circular-letter{position:absolute;left:50%;top:50%;display:inline-block;width:auto;height:auto;padding:0;margin:0;white-space:nowrap;line-height:1;pointer-events:auto;user-select:none;cursor:pointer;z-index:10;font-size:var(--ckcs-text-size,18px);font-weight:var(--ckcs-text-weight,700);letter-spacing:var(--ckcs-text-letter-spacing,1px);transform-origin:center;transition:filter .25s ease,opacity .25s ease}
+.circular-letter:hover,.circular-letter.hovered{filter:brightness(1.35)}
+.text-bg-circle-container{position:absolute;pointer-events:none;z-index:8;will-change:transform}.bg-circle-ring{fill:transparent}.bg-active-segment{position:absolute;will-change:transform}.bg-active-arc{transition:d .3s ease}
+.circular-slider-nav{position:absolute;top:50%;width:var(--ckcs-arrow-button-size,48px);height:var(--ckcs-arrow-button-size,48px);transform:translateY(-50%);padding:0;margin:0;border:var(--ckcs-arrow-border-width,0) solid var(--ckcs-arrow-border,#fff);border-radius:var(--ckcs-arrow-radius,12px);background:transparent!important;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:50;overflow:hidden;transition:transform .25s ease,box-shadow .25s ease;-webkit-appearance:none;appearance:none}
+.circular-slider-nav .ckcs-nav-bg{position:absolute;inset:0;background:var(--ckcs-arrow-bg,#fff);opacity:var(--ckcs-arrow-bg-opacity,0);z-index:0}
+.circular-slider-nav svg{position:relative;z-index:1;width:var(--ckcs-arrow-size,24px);height:var(--ckcs-arrow-size,24px);display:block}.circular-slider-nav.prev{left:var(--ckcs-arrow-offset,60px)}.circular-slider-nav.next{right:var(--ckcs-arrow-offset,60px)}
+.circular-slider-nav:hover{transform:translateY(-50%) scale(1.06);box-shadow:0 10px 32px rgba(15,23,42,.12)}.circular-slider-nav:active{transform:translateY(-50%) scale(.96)}.circular-slider-nav:focus-visible{outline:2px solid currentColor;outline-offset:4px}
+.circular-slider-message{padding:12px 16px;border:1px solid #e2e8f0;border-radius:10px;background:#f8fafc;color:#475569}
+@media(max-width:1024px){.circular-slider-wrapper{height:var(--ckcs-height-tablet,72vh);min-height:380px}.circular-slider-stage{width:var(--ckcs-circle-tablet,390px);height:var(--ckcs-circle-tablet,390px)}.circular-slider-nav.prev{left:min(var(--ckcs-arrow-offset,60px),32px)}.circular-slider-nav.next{right:min(var(--ckcs-arrow-offset,60px),32px)}}
+@media(max-width:767px){.circular-slider-wrapper{height:var(--ckcs-height-mobile,62vh);min-height:340px}.circular-slider-stage{width:min(var(--ckcs-circle-mobile,280px),calc(100vw - 72px));height:min(var(--ckcs-circle-mobile,280px),calc(100vw - 72px))}.circular-letter{font-size:max(11px,calc(var(--ckcs-text-size,18px) - 4px));letter-spacing:max(0px,calc(var(--ckcs-text-letter-spacing,1px) - .4px))}.circular-slider-nav{width:min(var(--ckcs-arrow-button-size,48px),40px);height:min(var(--ckcs-arrow-button-size,48px),40px)}.circular-slider-nav svg{width:min(var(--ckcs-arrow-size,24px),20px);height:min(var(--ckcs-arrow-size,24px),20px)}.circular-slider-nav.prev{left:14px}.circular-slider-nav.next{right:14px}.ckcs-hide-arrows-mobile .circular-slider-nav{display:none}}
+@media(prefers-reduced-motion:reduce){.slider-background .bg-layer,.circular-slide,.texts-rotating-container,.circular-slider-nav,.circular-letter{transition-duration:1ms!important}}
